@@ -1,0 +1,29 @@
+version: "3.9"
+
+services:
+  nginx:
+    image: nginx:latest
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./server.conf:/etc/nginx/conf.d/server.conf
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "200k"
+        max-file: "10"
+  pptx_copy_paste:
+    image: pptx_copy_paste:5
+    volumes:
+      - ./uwsgi.ini:/PATH/TO/APP/SERVER/uwsgi.ini    
+    build: 
+      context: ./docker
+      dockerfile: ./Dockerfile
+      args:
+        GITHUB_TOKEN: ${GITHUB_TOKEN}
+        FLASK_APP: application.py
+    container_name: pptx_copy_paste_api
+    environment:
+      AWS_ACCESS_KEY_ID: ${AWS_ACCESS_KEY_ID}
+      AWS_SECRET_ACCESS_KEY: ${AWS_SECRET_ACCESS_KEY}
+      AWS_DEFAULT_REGION: ap-northeast-1

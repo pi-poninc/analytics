@@ -1,0 +1,46 @@
+{
+  "settings": {
+    "analysis": {
+      "analyzer": {
+        "my_ja_analyzer": {
+          "type":      "custom",
+          "tokenizer": "kuromoji_tokenizer",
+          "char_filter": [
+            "kuromoji_iteration_mark"
+          ],
+          "filter": [
+            "kuromoji_baseform",
+            "kuromoji_part_of_speech",
+            "ja_stop",
+            "kuromoji_number",
+            "kuromoji_stemmer"
+          ]
+        }
+      }
+    }
+  },
+  "mappings": {
+    "dynamic": "true",
+    "_source": {
+      "enabled": "true"
+    },
+    "properties": {
+      "pathes": {
+        "type": "text",
+        "index": "true"
+      },
+      "slide_num": {
+        "type": "float"
+      },
+      "slide_show": {
+        "type": "float"
+      },
+      "extracted_texts":{
+        "type":"text",
+        "index":"true",
+        "analyzer":"my_ja_analyzer",
+        "search_analyzer": "my_ja_analyzer"
+      }
+    }
+  }
+}
