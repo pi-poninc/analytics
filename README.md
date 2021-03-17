@@ -24,6 +24,8 @@
   
   ## 実行方法
   
+  GITHUB_TOKEN, AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEYの環境変数を指定しておく(docker-compose.yml内で参照します)。
+  
   ```
   docker-compose up -d
   ```
