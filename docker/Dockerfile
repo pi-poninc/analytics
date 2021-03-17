@@ -10,7 +10,7 @@ RUN pip3 install --upgrade pip setuptools
 ADD ./requirements.txt ./requirements.txt
 RUN pip install -r requirements.txt
 
-RUN git clone https://$GITHUB_TOKEN:x-oauth-basic@github.com/pi-poninc/preprocess_pptx.git
-ADD ./elastic_search ./elastic_search
+RUN git clone https://$GITHUB_TOKEN:x-oauth-basic@github.com/pi-poninc/elastic_search.git
+ADD . /elastic_search
 WORKDIR /elastic_search/src
 CMD ["flask", "run"]
