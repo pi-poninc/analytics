@@ -6,16 +6,9 @@ services:
   pptx_copy_paste:
     image: pptx_copy_paste:5
     ports:
-      - "5000:5000"   
+      - "5000:5000"
     build: 
-      context: ./docker
-      dockerfile: ./Dockerfile
-      args:
-        GITHUB_TOKEN: ${GITHUB_TOKEN}
-        FLASK_APP: application.py
+      context: .
+      dockerfile: ./docker/Dockerfile
     container_name: pptx_copy_paste_api
-    environment:
-      AWS_ACCESS_KEY_ID: ${AWS_ACCESS_KEY_ID}
-      AWS_SECRET_ACCESS_KEY: ${AWS_SECRET_ACCESS_KEY}
-      AWS_DEFAULT_REGION: ap-northeast-1
-      FLASK_APP: application.py
+    env_file: ./docker.env

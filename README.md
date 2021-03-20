@@ -24,7 +24,9 @@
   
   ## 実行方法
   
-  GITHUB_TOKEN, AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEYの環境変数を指定しておく(docker-compose.yml内で参照します)。
+  AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEYの値を `docker.env` に指定しておく
+  `docker.env` は、gitignore対象なので、 `docker.env.sample` を参考に手元で `docker.env` を作成し、クレデンシャル情報を設定してください。
+  (docker-compose.yml内で参照します)。
   
   ```
   docker-compose up -d
