@@ -88,7 +88,7 @@ download_data("tmp/"+filename,filename)
 create_index("extract.csv")
 os.remove(filename)
 
-
+# FIXME: HTTP MethodはGETで動作するようにしてほしい 
 @api.route('/search_pptx_page', methods=['POST'])
 def search_pptx_page():
     key_word = request.data.decode()
