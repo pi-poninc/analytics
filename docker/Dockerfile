@@ -12,10 +12,7 @@ RUN pip3 install --upgrade pip setuptools
 ADD ./docker/requirements.txt ./requirements.txt
 RUN pip install -r requirements.txt
 
-# RUN git clone https://$GITHUB_TOKEN:x-oauth-basic@github.com/pi-poninc/elastic_search.git
 COPY ./src /usr/src/elastic_search/src
 
 EXPOSE 5000
-# ADD . /elastic_search
-# WORKDIR /elastic_search/src
 CMD ["flask", "run"]
