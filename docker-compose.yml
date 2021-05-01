@@ -12,3 +12,5 @@ services:
       dockerfile: ./docker/Dockerfile
     container_name: flask_web
     env_file: ./docker.env
+    volumes:
+      - ./src:/usr/src/elastic_search/src

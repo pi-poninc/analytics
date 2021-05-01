@@ -35,6 +35,6 @@
   ## テスト方法
   
   ```
-  python src/test.py #必要に応じてpostのdataの値を変更
+  python3 src/test.py #必要に応じてpostのdataの値を変更
   ```
   
