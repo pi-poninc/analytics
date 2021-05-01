@@ -1,8 +1,9 @@
+import os
 from . import api
 from flask import render_template, request, current_app, jsonify
 from app.exceptions import ValidationError
 from pdf2image import convert_from_path
-from .util_functions import *
+from .util_functions import download_data
 import pandas as pd
 from collections import OrderedDict
 from ast import literal_eval
@@ -84,7 +85,9 @@ def search_with_sudachi(query, es, index):
         }) for _, row in pd.DataFrame(response['hits']['hits']).iterrows()])
 
 filename = "extract.csv"
-download_data("tmp/"+filename,filename)
+APP_ENV = os.environ.get("APP_ENV")
+preprocess_bucket_name = f"{APP_ENV}-preprocessed-resources"
+download_data("tmp/"+filename,filename, preprocess_bucket_name)
 create_index("extract.csv")
 os.remove(filename)
 
