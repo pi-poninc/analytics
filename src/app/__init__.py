@@ -11,4 +11,7 @@ def create_app(config_name):
     from .apiv1 import api as apiv1_blueprint
     app.register_blueprint(apiv1_blueprint, url_prefix='/v1')
 
+    from .health_check import health_check_api as health_check_blueprint
+    app.register_blueprint(health_check_blueprint)
+
     return app

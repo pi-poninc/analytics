@@ -15,4 +15,4 @@ RUN pip install -r requirements.txt
 COPY ./src /usr/src/elastic_search/src
 
 EXPOSE 5000
-CMD ["flask", "run"]
+CMD ["flask", "run", "--host", "0.0.0.0"]
