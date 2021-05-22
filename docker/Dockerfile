@@ -1,5 +1,5 @@
 FROM amazonlinux:latest
-ENV FLASK_APP=app.py
+ENV FLASK_APP=application.py
 ENV FLASK_RUN_HOST=0.0.0.0
 
 WORKDIR /usr/src/elastic_search/src

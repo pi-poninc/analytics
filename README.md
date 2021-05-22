@@ -35,6 +35,21 @@
   ## テスト方法
   
   ```
-  python src/test.py #必要に応じてpostのdataの値を変更
+  python3 src/test.py #必要に応じてpostのdataの値を変更
   ```
-  
+
+## ECRへのPush方法について
+
+リポジトリのルート直下で、以下のコマンドを実行
+
+例：ステージング用のECRをpushしたい場合
+
+```bash
+$ aws ecr get-login-password --region ap-northeast-1 | docker login --username AWS --password-stdin 172570774766.dkr.ecr.ap-northeast-1.amazonaws.com
+
+$ docker build -f docker/Dockerfile -t staging_search_pptx_page_api .
+
+$ docker tag staging_search_pptx_page_api:latest 172570774766.dkr.ecr.ap-northeast-1.amazonaws.com/staging_search_pptx_page_api:latest
+
+$ docker push 172570774766.dkr.ecr.ap-northeast-1.amazonaws.com/staging_search_pptx_page_api:latest
+```
