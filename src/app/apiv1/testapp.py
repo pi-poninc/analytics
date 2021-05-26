@@ -33,35 +33,35 @@ es = Elasticsearch(
 
 #es = Elasticsearch(['localhost'], port=9200, use_ssl=False, verify_certs=False)
 
-def create_index(data_file, index='index3'):
-    index_file = './index.json'
+# def create_index(data_file, index='index3'):
+#     index_file = './index.json'
 
-    with open(index_file) as f:
-      source = f.read().strip()
-      source = literal_eval(source)
-      properties = source['mappings']['properties']
-      try:
-        es.indices.create(index=index, body=source)
-      except RequestError as es1:
-        es.indices.delete(index=index, ignore=[400, 404])
-        es.indices.create(index=index, body=source)
-      es.indices.flush()
+#     with open(index_file) as f:
+#       source = f.read().strip()
+#       source = literal_eval(source)
+#       properties = source['mappings']['properties']
+#       try:
+#         es.indices.create(index=index, body=source)
+#       except RequestError as es1:
+#         es.indices.delete(index=index, ignore=[400, 404])
+#         es.indices.create(index=index, body=source)
+#       es.indices.flush()
 
-      def generate_data():
-          with open(data_file, 'r') as f:
-            reader = csv.reader(f)
-            attrs = next(reader)
-            for lid, row in enumerate(reader):
-                data = {
-                    '_op_type': 'index',
-                    '_index': index,
-                    '_id': lid,
-                }
-                for j, value in enumerate(row):
-                    if attrs[j] in properties:
-                      data[attrs[j]] = value
-                yield data
-    print(helpers.bulk(es, generate_data()))
+#       def generate_data():
+#           with open(data_file, 'r') as f:
+#             reader = csv.reader(f)
+#             attrs = next(reader)
+#             for lid, row in enumerate(reader):
+#                 data = {
+#                     '_op_type': 'index',
+#                     '_index': index,
+#                     '_id': lid,
+#                 }
+#                 for j, value in enumerate(row):
+#                     if attrs[j] in properties:
+#                       data[attrs[j]] = value
+#                 yield data
+#     print(helpers.bulk(es, generate_data()))
 
 def search_with_sudachi(query, es, index):
 
@@ -88,7 +88,7 @@ filename = "extract.csv"
 APP_ENV = os.environ.get("APP_ENV")
 preprocess_bucket_name = f"{APP_ENV}-preprocessed-resources"
 download_data("tmp/"+filename,filename, preprocess_bucket_name)
-create_index("extract.csv")
+# create_index("extract.csv")
 os.remove(filename)
 
 # FIXME: HTTP MethodはGETで動作するようにしてほしい 
